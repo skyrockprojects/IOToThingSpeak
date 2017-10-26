@@ -1,11 +1,11 @@
 //define for sensor
-#include <Adafruit_Sensor.h>
-#include <DHT.h>
-#include <DHT_U.h>
-#define DHTPIN            2         // Pin which is connected to the DHT sensor.
-#define DHTTYPE           DHT11     // DHT 11 
-DHT_Unified dht(DHTPIN, DHTTYPE);
-uint32_t delayMS;
+//#include <Adafruit_Sensor.h>
+//#include <DHT.h>
+//#include <DHT_U.h>
+//#define DHTPIN            2         // Pin which is connected to the DHT sensor.
+//#define DHTTYPE           DHT11     // DHT 11 
+//DHT_Unified dht(DHTPIN, DHTTYPE);
+//uint32_t delayMS;
 
 //customize esp8266 lib
 #include "ESP8266.h"
@@ -16,14 +16,15 @@ SoftwareSerial mySerial(10, 11); //SoftwareSerial pins for MEGA/Uno. For other b
 
 ESP8266 wifi(mySerial); 
 
-float temp;
-float humi;
+float bpm;
+//float humi;
 
 void setup(void)
 {
   //Start Serial Monitor at any BaudRate
   Serial.begin(57600);
   Serial.println("Begin");
+  /*
   //sensor init
   dht.begin();
   Serial.println("Sensor init");
@@ -33,6 +34,7 @@ void setup(void)
   dht.humidity().getSensor(&sensor);
 
   delayMS = sensor.min_delay / 1000;
+  */
   //check wifi status
   if (!wifi.init(SSID, PASSWORD))
   {
@@ -44,7 +46,7 @@ void setup(void)
 
 void loop(void)
 {   
-
+/*
     // Delay between measurements.
    delay(delayMS);
    sensors_event_t event;  
@@ -69,7 +71,7 @@ void loop(void)
     humi = event.relative_humidity;
     Serial.println("%");
   } 
-    
+*/    
     //Serial.println(temp);
     //Serial.println(humi);
     
@@ -77,7 +79,7 @@ void loop(void)
     char result_b[5] = "";
     Serial.println("Sending Request");
     //send request httpGet(char* temp) -- temp will be sensor variable    
-    wifi.httpGet(dtostrf(temp, 3, 2, result_a));// you can add second parameter into function
+    wifi.httpGet(dtostrf(bpm, 3, 2, result_a));// you can add second parameter into function
 
     delay(10000);
 }
