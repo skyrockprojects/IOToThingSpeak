@@ -948,15 +948,15 @@ String inData = "";
   return i - 1;
 }
 //add by hsienyu
-int ESP8266::httpGet(char* temp)
+int ESP8266::httpGet(char* beats)
 {
   //char* request =  "GET /update?api_key=SK197NMLSHUNN6YL&field1=90\r\n";
-
+  // you can change your API KEY here, and because you want to send data, you are going to use GET from "Update a Channel Feed"
   char* head = "GET /update?api_key=SK197NMLSHUNN6YL&field1=";
   char* tail = "\r\n";
-  char* request = (char *) malloc(1+strlen(head)+strlen(temp)+strlen(tail));
+  char* request = (char *) malloc(1+strlen(head)+strlen(beats)+strlen(tail));
   strcpy(request, head);
-  strcat(request, temp);
+  strcat(request, beats);
   strcat(request, tail);
   
   Serial.println(request);
