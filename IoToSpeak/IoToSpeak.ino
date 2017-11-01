@@ -70,14 +70,14 @@ void loop(void)
     Serial.println("%");
   } 
     
-    //Serial.println(temp);
-    //Serial.println(humi);
+    Serial.println(temp);
+    Serial.println(humi);
     
     char result_a[5] = "";
     char result_b[5] = "";
     Serial.println("Sending Request");
     //send request httpGet(char* temp) -- temp will be sensor variable    
-    wifi.httpGet(dtostrf(temp, 3, 2, result_a));// you can add second parameter into function
+    wifi.httpGet(dtostrf(temp, 3, 2, result_a),dtostrf(temp, 3, 2, result_a));// you can add second parameter into function
 
     delay(10000);
 }
