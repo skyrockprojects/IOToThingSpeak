@@ -77,7 +77,7 @@ void loop(void)
     char result_b[5] = "";
     Serial.println("Sending Request");
     //send request httpGet(char* temp) -- temp will be sensor variable    
-    wifi.httpGet(dtostrf(temp, 3, 2, result_a));// you can add second parameter into function
+    wifi.httpGet(dtostrf(temp, 3, 2, result_a),dtostrf(humi, 3, 2, result_b));// you can add second parameter into function
 
     delay(10000);
 }

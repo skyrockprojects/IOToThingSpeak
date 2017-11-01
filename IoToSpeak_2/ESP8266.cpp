@@ -948,17 +948,20 @@ String inData = "";
   return i - 1;
 }
 //add by hsienyu
-int ESP8266::httpGet(char* temp)
+int ESP8266::httpGet(char* temp, char* humi)
 {
   //char* request =  "GET /update?api_key=SK197NMLSHUNN6YL&field1=90\r\n";
 
   char* head = "GET /update?api_key=SK197NMLSHUNN6YL&field1=";
+  char* value_sec = "&field2="
   char* tail = "\r\n";
-  char* request = (char *) malloc(1+strlen(head)+strlen(temp)+strlen(tail));
+  char* request = (char *) malloc(1+strlen(head)+strlen(temp)+strlen(value_sec)+strlen(humi)+strlen(tail));
   strcpy(request, head);
   strcat(request, temp);
+  strcat(request, value_sec);
+  strcat(request, humi);
   strcat(request, tail);
-  
+  //GET /update?api_key=SK197NMLSHUNN6YL&field1=temp&field2=humi
   Serial.println(request);
   
   if (createTCP("api.thingspeak.com", 80))
